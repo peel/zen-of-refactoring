@@ -29,7 +29,7 @@ This term is not very specific in respect to existing stick game variations.
 #+END_QUOTE
 
 * Goal - Experiment - Visualize - Undo 
-[[./img/gedr.png]]
+[[./img/gevu.png]]
 
 Several years ago Daniel Brolund and Ole Ellenstam shared a concept of mikado method of refactoring.
 Mikado is a pretty straight forward method based upon a simple idea of working on a stable code whenever introducing changes.
