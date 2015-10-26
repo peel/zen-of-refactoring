@@ -1,0 +1,103 @@
+#+TITLE: Zen Of Refactoring: Introduction
+#+AUTHOR: Piotr Limanowski
+
+[[./zen.jpg]]
+
+These days microservices are all at rage. Everyone writes "small reusable components". 
+Every modern and /not-so-modern-but-still-kinda-alive/ language has its own flavour of [[sinatrarb.com][Sinatra]]. 
+Oftentimes these components come as ripped away parts of legacy monolithic applications that have been around for years.
+This is why a proper refactoring techniques are still as relevant today as they were a couple of years back.
+In the article I'll try to briefly describe what Mikado Method is and how it quickly became my own 'Zen of Refactoring'.
+
+# video goes here
+
+* Monolith to Microservice
+[[file:./red.png]]
+
+In Zen philosphy there is a notion of enlightment levels. It all starts from Dukkha - suffering.
+And this is where you are while trying to introduce a change into an untested code. 
+It all breaks several places in the app. While fixing the issues you notice there are more and more and more... 
+The changing process becomes a whack-a-mole game. You fail. 
+Meh, let someone else do it. It's broken anyway. I'll just add this ~if~ in here and a ~for~ there.
+Then you try to forget. But there's another way...
+
+#+BEGIN_QUOTE
+Mikado is a pick-up sticks game originating in Europe. 
+In 1936 it was brought from Hungary to the USA and was mostly called pick-up sticks. 
+This term is not very specific in respect to existing stick game variations. 
+-- wikipedia.org
+#+END_QUOTE
+
+* Goal - Experiment - Visualize - Undo 
+[[./gedr.png]]
+
+Several years ago Daniel Brolund and Ole Ellenstam shared a concept of mikado method of refactoring.
+Mikado is a pretty straight forward method based upon a simple idea of working on a stable code whenever introducing changes.
+The only thing, besides your usual toolkit, that you'll need is a piece of paper and something to draw (or fluency in git if you choose so).
+
+** Do one thing at a time 
+Before diving into development you need to focus on a single task. A *goal* of the whole game. A success criteria that you work towards.
+Single-task, don't multitask. As zen proverb says: "when fixing ugly code, fix. when reading ugly code, read."
+Ole and Daniel propose writing the a goal on a piece of paper. Like so
+
+[[./goal.jpg]]
+
+But, as an avid cli/git user, my take on it is to have it all in git. To achieve that I create a new branch (usually something like: f-do-{{GOAL}}).
+#+BEGIN_SRC
+git checkout -b f-do-extract-news-server
+#+END_SRC
+Aside from having it all visible in git log (which is pretty cool on its own) it constantly shows in my emacs powerline as a kind reminder.
+[[./emacs.png]]
+
+** Think about what is necessary
+There's this one idea that instantly comes to your mind whenever thinking about the very goal you've just defined.
+*Experiment* with it right away. Do not overthink. Do not look for a pattern, unless it's the very idea.
+It will surely break stuff. But it doesn't really matter. Just implement it already.
+Mikado method authors recommend you write the idea as a child of the goal. Something along the lines of
+
+[[./leaf.jpg]]
+
+I however... As I already do have a goal feature branch, tend to create another downstream branch like this
+#+BEGIN_SRC
+git checkout -b f-do-extract-news-server--move-admin-package-to-commons
+#+END_SRC
+Obviously the branch names become horrific when adding proper names, but as I am storing them solely for purpose of graphing them, I don't really care.
+And the thing is that at times you will need to create sibling branches as you notice multiple issues caused by the same change.
+** Put space between things 
+Now this is the least obvious thing to do. Yet you're to work on a stable code all the time, remember? 
+It's time to say goodbye to all the changes you've made. In "/Working Effectively with Legacy Code/" book Michael Feathers calls this /scratch refactorings/.
+I'd call it removing future bugs. Always revert changes that don't work. They will come as no use to you at a later time.
+Anyhow all the branches' code is the same. As I reset the changes and branching system is used solely for graphing.
+** Make changing become meditation
+You might ask what is the purpose of all that? Why shall I destroy all the work I've made so far instead of stashing that for later?
+Indeed at times stashing changes for later is a good idea. However for the most part the only artifact from the iterative refactoring process is... a piece of paper.
+The graph you've just started creating will eventually become  a roadmap how to implement to change without breaking stuff. And without wiring half of the app for purpose of /spec tests/.
+Because right now you know that the change that seemed the most obvious to achieve a goal you set breaks stuff. And you know where.
+Fixing the issues becomes your secondary goal. You put it down into the graph and iterate the whole process until there are no more breaking issues.
+Eventually you end up with a directed acyclic graph that will look like this
+
+[[./graph1.png]]
+
+Or like this...
+
+[[./graph2.png]]
+
+And as the graph is finished. You reset it all completely. Remove all the supporting branches and eat it one leaf at a time. 
+Down from furthest leaves right to the root.
+
+* Develop rituals
+All of the above comes from my personal practice. All the great methodologies came from complex ideas being fit into simple rules and practices. 
+But they don't work for everyone the same way. So go, have a look at Mikado Method's sample repository and try it out for yourself.
+I guarantee that fitting the tool into your ordinary toolchain it will greatly improve your confidence while working with legacy code.
+
+* Summary
+Mikado is a pick-up sticks game that is a good metaphor for iterative refactoring. 
+With a right mindset, growing understanding of legacy code and it becomes really effective tool whenever trying to get rid of deeply nested legacy code.
+The thing I find most compelling in the approach is that it is closely related to idea of simple, repeatable tasks. Almost zen-like.
+But it needs practice and updating the methodology to fit your current needs as zen master Wu Li once said "/Before enlightenment chop wood and carry water. After enlightenment, chop wood and carry water./"
+
+** Links
+- [[https://speakerdeck.com/peel/zen-of-refactoring][My Zen of Refactoring talk]]
+- [[https://www.manning.com/books/the-mikado-method][Mikado Method - Ellnestam, Ole; Brolund, Daniel]]
+- [[http://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052][Working Effectively with Legacy Code - Feathers, Michael]]
+- [[http://zenhabits.net/12-essential-rules-to-live-more-like-a-zen-monk/][12 Essential Rules to Live More Like a Zen Monk - zenhabits.net]]
