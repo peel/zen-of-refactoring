@@ -1,7 +1,7 @@
 #+TITLE: Zen Of Refactoring: Introduction
 #+AUTHOR: Piotr Limanowski
 
-[[./zen.jpg]]
+[[./img/zen.jpg]]
 
 These days microservices are all at rage. Everyone writes "small reusable components". 
 Every modern and /not-so-modern-but-still-kinda-alive/ language has its own flavour of [[sinatrarb.com][Sinatra]]. 
@@ -12,7 +12,7 @@ In the article I'll try to briefly describe what Mikado Method is and how it qui
 # video goes here
 
 * Monolith to Microservice
-[[file:./red.png]]
+[[./img/red.png]]
 
 In Zen philosphy there is a notion of enlightment levels. It all starts from Dukkha - suffering.
 And this is where you are while trying to introduce a change into an untested code. 
@@ -29,7 +29,7 @@ This term is not very specific in respect to existing stick game variations.
 #+END_QUOTE
 
 * Goal - Experiment - Visualize - Undo 
-[[./gedr.png]]
+[[./img/gedr.png]]
 
 Several years ago Daniel Brolund and Ole Ellenstam shared a concept of mikado method of refactoring.
 Mikado is a pretty straight forward method based upon a simple idea of working on a stable code whenever introducing changes.
@@ -40,14 +40,14 @@ Before diving into development you need to focus on a single task. A *goal* of t
 Single-task, don't multitask. As zen proverb says: "when fixing ugly code, fix. when reading ugly code, read."
 Ole and Daniel propose writing the a goal on a piece of paper. Like so
 
-[[./goal.jpg]]
+[[./img/goal.jpg]]
 
 But, as an avid cli/git user, my take on it is to have it all in git. To achieve that I create a new branch (usually something like: f-do-{{GOAL}}).
 #+BEGIN_SRC
 git checkout -b f-do-extract-news-server
 #+END_SRC
 Aside from having it all visible in git log (which is pretty cool on its own) it constantly shows in my emacs powerline as a kind reminder.
-[[./emacs.png]]
+[[./img/emacs.png]]
 
 ** Think about what is necessary
 There's this one idea that instantly comes to your mind whenever thinking about the very goal you've just defined.
@@ -55,7 +55,7 @@ There's this one idea that instantly comes to your mind whenever thinking about 
 It will surely break stuff. But it doesn't really matter. Just implement it already.
 Mikado method authors recommend you write the idea as a child of the goal. Something along the lines of
 
-[[./leaf.jpg]]
+[[./img/leaf.jpg]]
 
 I however... As I already do have a goal feature branch, tend to create another downstream branch like this
 #+BEGIN_SRC
